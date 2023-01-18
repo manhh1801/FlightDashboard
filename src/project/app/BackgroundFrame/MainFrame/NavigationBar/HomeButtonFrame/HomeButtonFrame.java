@@ -40,6 +40,8 @@ public class HomeButtonFrame extends Pane
         HomeIcon_var.setAnimationThreadPool(AnimationThreadPool);
         HomeIcon_Fade_var.setAnimationThreadPool(AnimationThreadPool);
 
+        final SimpleBooleanProperty LastFlag=new SimpleBooleanProperty(false);
+
         MousePosState=new SimpleBooleanProperty(false);
         MousePosState.addListener
         (
@@ -47,19 +49,46 @@ public class HomeButtonFrame extends Pane
             {
                 public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1)
                 {
-                    if(MousePosState.get()==true)
+                    if(ClickState.get()==false)
                     {
-                        if(HomeBackground_var.ExitService.isRunning()==true) {HomeBackground_var.ExitService.cancel();}
-                        if(HomeIcon_Fade_var.FadeOutService.isRunning()==true) {HomeIcon_Fade_var.FadeOutService.cancel();}
-                        HomeBackground_var.EnterService.restart();
-                        HomeIcon_Fade_var.FadeInService.restart();
+                        if(MousePosState.get()==true)
+                        {
+                            if(HomeBackground_var.ExitService.isRunning()==true) {HomeBackground_var.ExitService.cancel();}
+                            if(HomeIcon_Fade_var.FadeOutService.isRunning()==true) {HomeIcon_Fade_var.FadeOutService.cancel();}
+                            HomeBackground_var.EnterService.restart();
+                            HomeIcon_Fade_var.FadeInService.restart();
+                        }
+                        else
+                        {
+                            if(HomeBackground_var.EnterService.isRunning()==true) {HomeBackground_var.ExitService.cancel();}
+                            if(HomeIcon_Fade_var.FadeInService.isRunning()==true) {HomeIcon_Fade_var.FadeOutService.cancel();}
+                            HomeBackground_var.ExitService.restart();
+                            HomeIcon_Fade_var.FadeOutService.restart();
+                        }
                     }
                     else
                     {
-                        if(HomeBackground_var.EnterService.isRunning()==true) {HomeBackground_var.ExitService.cancel();}
-                        if(HomeIcon_Fade_var.FadeInService.isRunning()==true) {HomeIcon_Fade_var.FadeOutService.cancel();}
-                        HomeBackground_var.ExitService.restart();
-                        HomeIcon_Fade_var.FadeOutService.restart();
+                        if(MousePosState.get()==true)
+                        {
+                            if(HomeIcon_Fade_var.FadeOutService.isRunning()==true) {HomeIcon_Fade_var.FadeOutService.cancel();}
+                            HomeIcon_Fade_var.FadeInService.restart();
+                        }
+                        else
+                        {
+                            if(LastFlag.get()==false)
+                            {
+                                if(HomeIcon_Fade_var.FadeInService.isRunning()==true) {HomeIcon_Fade_var.FadeOutService.cancel();}
+                                HomeIcon_Fade_var.FadeOutService.restart();
+                            }
+                            else
+                            {
+                                if(HomeBackground_var.EnterService.isRunning()==true) {HomeBackground_var.ExitService.cancel();}
+                                if(HomeIcon_Fade_var.FadeInService.isRunning()==true) {HomeIcon_Fade_var.FadeOutService.cancel();}
+                                HomeBackground_var.ExitService.restart();
+                                HomeIcon_Fade_var.FadeOutService.restart();
+                                LastFlag.set(false);
+                            }
+                        }
                     }
                 }
             }
@@ -85,7 +114,7 @@ public class HomeButtonFrame extends Pane
             }
         );
 
-        ClickState=new SimpleBooleanProperty(false);
+        ClickState=new SimpleBooleanProperty(true);
         ClickState.addListener
         (
             new ChangeListener<Boolean>()
@@ -98,6 +127,7 @@ public class HomeButtonFrame extends Pane
                         if(HomeIcon_Fade_var.ClickOffService.isRunning()==true) {HomeIcon_Fade_var.ClickOffService.cancel();}
                         HomeIcon_var.ClickOnService.restart();
                         HomeIcon_Fade_var.ClickOnService.restart();
+                        LastFlag.set(true);
                     }
                     else
                     {
@@ -115,7 +145,7 @@ public class HomeButtonFrame extends Pane
             {
                 public void handle(MouseEvent mouseEvent)
                 {
-                    ClickState.set(!ClickState.get());
+                    ClickState.set(true);
                 }
             }
         );

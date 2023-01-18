@@ -60,7 +60,7 @@ public class SchedulesButtonFrame extends Pane
                 protected double computeValue() {return SchedulesBackground_var.heightProperty().getValue()-50*UNIT;}
             }
         );
-        StateButtonFrame_var.ClickState.bindBidirectional(SchedulesMainButtonFrame_var.ClickState);
+        StateButtonFrame_var.SizeState.bindBidirectional(SchedulesMainButtonFrame_var.ClickState);
 
         setPrefWidth(60*UNIT); prefHeightProperty().bindBidirectional(SchedulesBackground_var.heightProperty());
         getChildren().addAll(SchedulesBackground_var, MapButtonFrame_var, TimetableButtonFrame_var, SchedulesMainButtonFrame_var, StateButtonFrame_var);

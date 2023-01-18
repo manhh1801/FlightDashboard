@@ -39,6 +39,8 @@ public class StatisticsButtonFrame extends Pane
         StatisticsIcon_var.setAnimationThreadPool(AnimationThreadPool);
         StatisticsIcon_Fade_var.setAnimationThreadPool(AnimationThreadPool);
 
+        final SimpleBooleanProperty LastFlag=new SimpleBooleanProperty(false);
+
         MousePosState=new SimpleBooleanProperty(false);
         MousePosState.addListener
         (
@@ -46,19 +48,46 @@ public class StatisticsButtonFrame extends Pane
             {
                 public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1)
                 {
-                    if(MousePosState.get()==true)
+                    if(ClickState.get()==false)
                     {
-                        if(StatisticsBackground_var.ExitService.isRunning()==true) {StatisticsBackground_var.ExitService.cancel();}
-                        if(StatisticsIcon_Fade_var.FadeOutService.isRunning()==true) {StatisticsIcon_Fade_var.FadeOutService.cancel();}
-                        StatisticsBackground_var.EnterService.restart();
-                        StatisticsIcon_Fade_var.FadeInService.restart();
+                        if(MousePosState.get()==true)
+                        {
+                            if(StatisticsBackground_var.ExitService.isRunning()==true) {StatisticsBackground_var.ExitService.cancel();}
+                            if(StatisticsIcon_Fade_var.FadeOutService.isRunning()==true) {StatisticsIcon_Fade_var.FadeOutService.cancel();}
+                            StatisticsBackground_var.EnterService.restart();
+                            StatisticsIcon_Fade_var.FadeInService.restart();
+                        }
+                        else
+                        {
+                            if(StatisticsBackground_var.EnterService.isRunning()==true) {StatisticsBackground_var.ExitService.cancel();}
+                            if(StatisticsIcon_Fade_var.FadeInService.isRunning()==true) {StatisticsIcon_Fade_var.FadeOutService.cancel();}
+                            StatisticsBackground_var.ExitService.restart();
+                            StatisticsIcon_Fade_var.FadeOutService.restart();
+                        }
                     }
                     else
                     {
-                        if(StatisticsBackground_var.EnterService.isRunning()==true) {StatisticsBackground_var.ExitService.cancel();}
-                        if(StatisticsIcon_Fade_var.FadeInService.isRunning()==true) {StatisticsIcon_Fade_var.FadeOutService.cancel();}
-                        StatisticsBackground_var.ExitService.restart();
-                        StatisticsIcon_Fade_var.FadeOutService.restart();
+                        if(MousePosState.get()==true)
+                        {
+                            if(StatisticsIcon_Fade_var.FadeOutService.isRunning()==true) {StatisticsIcon_Fade_var.FadeOutService.cancel();}
+                            StatisticsIcon_Fade_var.FadeInService.restart();
+                        }
+                        else
+                        {
+                            if(LastFlag.get()==false)
+                            {
+                                if(StatisticsIcon_Fade_var.FadeInService.isRunning()==true) {StatisticsIcon_Fade_var.FadeOutService.cancel();}
+                                StatisticsIcon_Fade_var.FadeOutService.restart();
+                            }
+                            else
+                            {
+                                if(StatisticsBackground_var.EnterService.isRunning()==true) {StatisticsBackground_var.ExitService.cancel();}
+                                if(StatisticsIcon_Fade_var.FadeInService.isRunning()==true) {StatisticsIcon_Fade_var.FadeOutService.cancel();}
+                                StatisticsBackground_var.ExitService.restart();
+                                StatisticsIcon_Fade_var.FadeOutService.restart();
+                                LastFlag.set(false);
+                            }
+                        }
                     }
                 }
             }
@@ -97,6 +126,7 @@ public class StatisticsButtonFrame extends Pane
                         if(StatisticsIcon_Fade_var.ClickOffService.isRunning()==true) {StatisticsIcon_Fade_var.ClickOffService.cancel();}
                         StatisticsIcon_var.ClickOnService.restart();
                         StatisticsIcon_Fade_var.ClickOnService.restart();
+                        LastFlag.set(true);
                     }
                     else
                     {
@@ -114,7 +144,7 @@ public class StatisticsButtonFrame extends Pane
             {
                 public void handle(MouseEvent mouseEvent)
                 {
-                    ClickState.set(!ClickState.get());
+                    ClickState.set(true);
                 }
             }
         );

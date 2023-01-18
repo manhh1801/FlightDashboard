@@ -106,7 +106,7 @@ public class SchedulesMainButtonFrame extends Pane
             {
                 public void handle(MouseEvent mouseEvent)
                 {
-                    ClickState.set(!ClickState.get());
+                    ClickState.set(true);
                 }
             }
         );

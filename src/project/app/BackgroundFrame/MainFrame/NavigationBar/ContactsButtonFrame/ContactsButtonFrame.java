@@ -39,6 +39,8 @@ public class ContactsButtonFrame extends Pane
         ContactsIcon_var.setAnimationThreadPool(AnimationThreadPool);
         ContactsIcon_Fade_var.setAnimationThreadPool(AnimationThreadPool);
 
+        final SimpleBooleanProperty LastFlag=new SimpleBooleanProperty(false);
+
         MousePosState=new SimpleBooleanProperty(false);
         MousePosState.addListener
         (
@@ -46,19 +48,46 @@ public class ContactsButtonFrame extends Pane
             {
                 public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1)
                 {
-                    if(MousePosState.get()==true)
+                    if(ClickState.get()==false)
                     {
-                        if(ContactsBackground_var.ExitService.isRunning()==true) {ContactsBackground_var.ExitService.cancel();}
-                        if(ContactsIcon_Fade_var.FadeOutService.isRunning()==true) {ContactsIcon_Fade_var.FadeOutService.cancel();}
-                        ContactsBackground_var.EnterService.restart();
-                        ContactsIcon_Fade_var.FadeInService.restart();
+                        if(MousePosState.get()==true)
+                        {
+                            if(ContactsBackground_var.ExitService.isRunning()==true) {ContactsBackground_var.ExitService.cancel();}
+                            if(ContactsIcon_Fade_var.FadeOutService.isRunning()==true) {ContactsIcon_Fade_var.FadeOutService.cancel();}
+                            ContactsBackground_var.EnterService.restart();
+                            ContactsIcon_Fade_var.FadeInService.restart();
+                        }
+                        else
+                        {
+                            if(ContactsBackground_var.EnterService.isRunning()==true) {ContactsBackground_var.ExitService.cancel();}
+                            if(ContactsIcon_Fade_var.FadeInService.isRunning()==true) {ContactsIcon_Fade_var.FadeOutService.cancel();}
+                            ContactsBackground_var.ExitService.restart();
+                            ContactsIcon_Fade_var.FadeOutService.restart();
+                        }
                     }
                     else
                     {
-                        if(ContactsBackground_var.EnterService.isRunning()==true) {ContactsBackground_var.ExitService.cancel();}
-                        if(ContactsIcon_Fade_var.FadeInService.isRunning()==true) {ContactsIcon_Fade_var.FadeOutService.cancel();}
-                        ContactsBackground_var.ExitService.restart();
-                        ContactsIcon_Fade_var.FadeOutService.restart();
+                        if(MousePosState.get()==true)
+                        {
+                            if(ContactsIcon_Fade_var.FadeOutService.isRunning()==true) {ContactsIcon_Fade_var.FadeOutService.cancel();}
+                            ContactsIcon_Fade_var.FadeInService.restart();
+                        }
+                        else
+                        {
+                            if(LastFlag.get()==false)
+                            {
+                                if(ContactsIcon_Fade_var.FadeInService.isRunning()==true) {ContactsIcon_Fade_var.FadeOutService.cancel();}
+                                ContactsIcon_Fade_var.FadeOutService.restart();
+                            }
+                            else
+                            {
+                                if(ContactsBackground_var.EnterService.isRunning()==true) {ContactsBackground_var.ExitService.cancel();}
+                                if(ContactsIcon_Fade_var.FadeInService.isRunning()==true) {ContactsIcon_Fade_var.FadeOutService.cancel();}
+                                ContactsBackground_var.ExitService.restart();
+                                ContactsIcon_Fade_var.FadeOutService.restart();
+                                LastFlag.set(false);
+                            }
+                        }
                     }
                 }
             }
@@ -97,6 +126,7 @@ public class ContactsButtonFrame extends Pane
                         if(ContactsIcon_Fade_var.ClickOffService.isRunning()==true) {ContactsIcon_Fade_var.ClickOffService.cancel();}
                         ContactsIcon_var.ClickOnService.restart();
                         ContactsIcon_Fade_var.ClickOnService.restart();
+                        LastFlag.set(true);
                     }
                     else
                     {
@@ -114,7 +144,7 @@ public class ContactsButtonFrame extends Pane
             {
                 public void handle(MouseEvent mouseEvent)
                 {
-                    ClickState.set(!ClickState.get());
+                    ClickState.set(true);
                 }
             }
         );

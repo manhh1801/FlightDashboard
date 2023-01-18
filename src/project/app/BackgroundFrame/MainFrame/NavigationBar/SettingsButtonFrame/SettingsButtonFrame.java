@@ -40,6 +40,8 @@ public class SettingsButtonFrame extends Pane
         SettingsIcon_var.setAnimationThreadPool(AnimationThreadPool);
         SettingsIcon_Fade_var.setAnimationThreadPool(AnimationThreadPool);
 
+        final SimpleBooleanProperty LastFlag=new SimpleBooleanProperty(false);
+
         MousePosState=new SimpleBooleanProperty(false);
         MousePosState.addListener
         (
@@ -47,19 +49,46 @@ public class SettingsButtonFrame extends Pane
             {
                 public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1)
                 {
-                    if(MousePosState.get()==true)
+                    if(ClickState.get()==false)
                     {
-                        if(SettingsBackground_var.ExitService.isRunning()==true) {SettingsBackground_var.ExitService.cancel();}
-                        if(SettingsIcon_Fade_var.FadeOutService.isRunning()==true) {SettingsIcon_Fade_var.FadeOutService.cancel();}
-                        SettingsBackground_var.EnterService.restart();
-                        SettingsIcon_Fade_var.FadeInService.restart();
+                        if(MousePosState.get()==true)
+                        {
+                            if(SettingsBackground_var.ExitService.isRunning()==true) {SettingsBackground_var.ExitService.cancel();}
+                            if(SettingsIcon_Fade_var.FadeOutService.isRunning()==true) {SettingsIcon_Fade_var.FadeOutService.cancel();}
+                            SettingsBackground_var.EnterService.restart();
+                            SettingsIcon_Fade_var.FadeInService.restart();
+                        }
+                        else
+                        {
+                            if(SettingsBackground_var.EnterService.isRunning()==true) {SettingsBackground_var.ExitService.cancel();}
+                            if(SettingsIcon_Fade_var.FadeInService.isRunning()==true) {SettingsIcon_Fade_var.FadeOutService.cancel();}
+                            SettingsBackground_var.ExitService.restart();
+                            SettingsIcon_Fade_var.FadeOutService.restart();
+                        }
                     }
                     else
                     {
-                        if(SettingsBackground_var.EnterService.isRunning()==true) {SettingsBackground_var.ExitService.cancel();}
-                        if(SettingsIcon_Fade_var.FadeInService.isRunning()==true) {SettingsIcon_Fade_var.FadeOutService.cancel();}
-                        SettingsBackground_var.ExitService.restart();
-                        SettingsIcon_Fade_var.FadeOutService.restart();
+                        if(MousePosState.get()==true)
+                        {
+                            if(SettingsIcon_Fade_var.FadeOutService.isRunning()==true) {SettingsIcon_Fade_var.FadeOutService.cancel();}
+                            SettingsIcon_Fade_var.FadeInService.restart();
+                        }
+                        else
+                        {
+                            if(LastFlag.get()==false)
+                            {
+                                if(SettingsIcon_Fade_var.FadeInService.isRunning()==true) {SettingsIcon_Fade_var.FadeOutService.cancel();}
+                                SettingsIcon_Fade_var.FadeOutService.restart();
+                            }
+                            else
+                            {
+                                if(SettingsBackground_var.EnterService.isRunning()==true) {SettingsBackground_var.ExitService.cancel();}
+                                if(SettingsIcon_Fade_var.FadeInService.isRunning()==true) {SettingsIcon_Fade_var.FadeOutService.cancel();}
+                                SettingsBackground_var.ExitService.restart();
+                                SettingsIcon_Fade_var.FadeOutService.restart();
+                                LastFlag.set(false);
+                            }
+                        }
                     }
                 }
             }
@@ -71,6 +100,7 @@ public class SettingsButtonFrame extends Pane
                 public void handle(MouseEvent mouseEvent)
                 {
                     MousePosState.set(true);
+
                 }
             }
         );
@@ -98,6 +128,7 @@ public class SettingsButtonFrame extends Pane
                         if(SettingsIcon_Fade_var.ClickOffService.isRunning()==true) {SettingsIcon_Fade_var.ClickOffService.cancel();}
                         SettingsIcon_var.ClickOnService.restart();
                         SettingsIcon_Fade_var.ClickOnService.restart();
+                        LastFlag.set(true);
                     }
                     else
                     {
@@ -115,7 +146,7 @@ public class SettingsButtonFrame extends Pane
             {
                 public void handle(MouseEvent mouseEvent)
                 {
-                    ClickState.set(!ClickState.get());
+                    ClickState.set(true);
                 }
             }
         );
