@@ -14,7 +14,7 @@ public class MainFrame extends Pane
     MainFrameBackground MainFrameBackground_var;
     SystemBar SystemBar_var;
     NavigationBar NavigationBar_var;
-    ContentPane ContentPane_var
+    ContentPane ContentPane_var;
 
     public MainFrame()
     {

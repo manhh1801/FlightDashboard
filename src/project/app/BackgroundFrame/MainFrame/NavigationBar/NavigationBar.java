@@ -1,10 +1,15 @@
 package project.app.BackgroundFrame.MainFrame.NavigationBar;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
+import project.app.BackgroundFrame.MainFrame.ContentPane.PaneState.PaneState;
 import project.app.BackgroundFrame.MainFrame.NavigationBar.AppLogo.AppLogo;
 import project.app.BackgroundFrame.MainFrame.NavigationBar.ContactsButtonFrame.ContactsButtonFrame;
 import project.app.BackgroundFrame.MainFrame.NavigationBar.HomeButtonFrame.HomeButtonFrame;
@@ -17,6 +22,9 @@ import static project.app.Utilities.SizeUtils.*;
 
 public class NavigationBar extends Pane
 {
+    public PaneState.Wrapper PaneStateWrapper;
+    public SimpleBooleanProperty PaneStateController;
+
     public AppLogo AppLogo_var;
     public HomeButtonFrame HomeButtonFrame_var;
     public SchedulesButtonFrame SchedulesButtonFrame_var;
@@ -34,6 +42,92 @@ public class NavigationBar extends Pane
         StatisticsButtonFrame_var=new StatisticsButtonFrame();
         ContactsButtonFrame_var=new ContactsButtonFrame();
         SettingsButtonFrame_var=new SettingsButtonFrame();
+
+        PaneStateWrapper =new PaneState.Wrapper();
+        PaneStateWrapper.set(PaneState.State.HOME);
+
+//        HomeButtonFrame_var.ClickState.bind
+//        (
+//            new BooleanBinding()
+//            {
+//                {bind(SchedulesButtonFrame_var.ClickState, TicketsButtonFrame_var.ClickState, StatisticsButtonFrame_var.ClickState, ContactsButtonFrame_var.ClickState, SettingsButtonFrame_var.ClickState);}
+//                protected boolean computeValue() {return !(SchedulesButtonFrame_var.ClickState.get()||TicketsButtonFrame_var.ClickState.get()||StatisticsButtonFrame_var.ClickState.get()||ContactsButtonFrame_var.ClickState.get()||SettingsButtonFrame_var.ClickState.get());}
+//            }
+//        );
+//        SchedulesButtonFrame_var.ClickState.bind
+//        (
+//            new BooleanBinding()
+//            {
+//                {bind(HomeButtonFrame_var.ClickState, TicketsButtonFrame_var.ClickState, StatisticsButtonFrame_var.ClickState, ContactsButtonFrame_var.ClickState, SettingsButtonFrame_var.ClickState);}
+//                protected boolean computeValue() {return !(HomeButtonFrame_var.ClickState.get()||TicketsButtonFrame_var.ClickState.get()||StatisticsButtonFrame_var.ClickState.get()||ContactsButtonFrame_var.ClickState.get()||SettingsButtonFrame_var.ClickState.get());}
+//            }
+//        );
+//        TicketsButtonFrame_var.ClickState.bind
+//        (
+//            new BooleanBinding()
+//            {
+//                {bind(HomeButtonFrame_var.ClickState, SchedulesButtonFrame_var.ClickState, StatisticsButtonFrame_var.ClickState, ContactsButtonFrame_var.ClickState, SettingsButtonFrame_var.ClickState);}
+//                protected boolean computeValue() {return !(HomeButtonFrame_var.ClickState.get()||SchedulesButtonFrame_var.ClickState.get()||StatisticsButtonFrame_var.ClickState.get()||ContactsButtonFrame_var.ClickState.get()||SettingsButtonFrame_var.ClickState.get());}
+//            }
+//        );
+//        StatisticsButtonFrame_var.ClickState.bind
+//        (
+//            new BooleanBinding()
+//            {
+//                {bind(HomeButtonFrame_var.ClickState, SchedulesButtonFrame_var.ClickState, TicketsButtonFrame_var.ClickState, ContactsButtonFrame_var.ClickState, SettingsButtonFrame_var.ClickState);}
+//                protected boolean computeValue() {return !(HomeButtonFrame_var.ClickState.get()||SchedulesButtonFrame_var.ClickState.get()||TicketsButtonFrame_var.ClickState.get()||ContactsButtonFrame_var.ClickState.get()||SettingsButtonFrame_var.ClickState.get());}
+//            }
+//        );
+//        ContactsButtonFrame_var.ClickState.bind
+//        (
+//            new BooleanBinding()
+//            {
+//                {bind(HomeButtonFrame_var.ClickState, SchedulesButtonFrame_var.ClickState, TicketsButtonFrame_var.ClickState, StatisticsButtonFrame_var.ClickState, SettingsButtonFrame_var.ClickState);}
+//                protected boolean computeValue() {return !(HomeButtonFrame_var.ClickState.get()||SchedulesButtonFrame_var.ClickState.get()||TicketsButtonFrame_var.ClickState.get()||StatisticsButtonFrame_var.ClickState.get()||SettingsButtonFrame_var.ClickState.get());}
+//            }
+//        );
+//        SettingsButtonFrame_var.ClickState.bind
+//        (
+//            new BooleanBinding()
+//            {
+//                {bind(HomeButtonFrame_var.ClickState, SchedulesButtonFrame_var.ClickState, TicketsButtonFrame_var.ClickState, StatisticsButtonFrame_var.ClickState, ContactsButtonFrame_var.ClickState);}
+//                protected boolean computeValue() {return !(HomeButtonFrame_var.ClickState.get()||SchedulesButtonFrame_var.ClickState.get()||TicketsButtonFrame_var.ClickState.get()||StatisticsButtonFrame_var.ClickState.get()||ContactsButtonFrame_var.ClickState.get());}
+//            }
+//        );
+//
+        PaneStateController=new SimpleBooleanProperty();
+        PaneStateController.bind
+        (
+            new BooleanBinding()
+            {
+                {bind(HomeButtonFrame_var.ClickState, SchedulesButtonFrame_var.ClickState, TicketsButtonFrame_var.ClickState, StatisticsButtonFrame_var.ClickState, ContactsButtonFrame_var.ClickState, SettingsButtonFrame_var.ClickState);}
+                protected boolean computeValue() {return HomeButtonFrame_var.ClickState.get()||SchedulesButtonFrame_var.ClickState.get()||TicketsButtonFrame_var.ClickState.get()||StatisticsButtonFrame_var.ClickState.get()||ContactsButtonFrame_var.ClickState.get()||SettingsButtonFrame_var.ClickState.get();}
+            }
+        );
+        PaneStateController.addListener
+        (
+            new InvalidationListener()
+            {
+                public void invalidated(Observable observable)
+                {
+                    if(PaneStateWrapper.get()==PaneState.State.TICKETS) {TicketsButtonFrame_var.ClickState.set(false);}
+                    else if(PaneStateWrapper.get()==PaneState.State.SCHEDULES) {SchedulesButtonFrame_var.ClickState.set(false);}
+                    else if(PaneStateWrapper.get()==PaneState.State.HOME) {HomeButtonFrame_var.ClickState.set(false);}
+                    else if(PaneStateWrapper.get()==PaneState.State.STATISTICS) {StatisticsButtonFrame_var.ClickState.set(false);}
+                    else if(PaneStateWrapper.get()==PaneState.State.CONTACTS) {ContactsButtonFrame_var.ClickState.set(false);}
+                    else {SettingsButtonFrame_var.ClickState.set(false);}
+
+                    if(TicketsButtonFrame_var.ClickState.get()==true) {PaneStateWrapper.set(PaneState.State.TICKETS);}
+                    else if(SchedulesButtonFrame_var.ClickState.get()==true) {PaneStateWrapper.set(PaneState.State.SCHEDULES);}
+                    else if(HomeButtonFrame_var.ClickState.get()==true) {PaneStateWrapper.set(PaneState.State.HOME);}
+                    else if(StatisticsButtonFrame_var.ClickState.get()==true) {PaneStateWrapper.set(PaneState.State.STATISTICS);}
+                    else if(ContactsButtonFrame_var.ClickState.get()==true) {PaneStateWrapper.set(PaneState.State.CONTACTS);}
+                    else {PaneStateWrapper.set(PaneState.State.SETTINGS);}
+
+                    PaneStateController.getValue();
+                }
+            }
+        );
 
         FlowPane PaneNavigators=new FlowPane();
         PaneNavigators.setOrientation(Orientation.VERTICAL);

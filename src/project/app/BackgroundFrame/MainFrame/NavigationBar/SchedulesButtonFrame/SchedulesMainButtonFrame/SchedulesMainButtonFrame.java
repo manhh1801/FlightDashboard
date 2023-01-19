@@ -9,7 +9,6 @@ import javafx.scene.layout.Pane;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import project.app.BackgroundFrame.MainFrame.NavigationBar.SchedulesButtonFrame.SchedulesBackground.SchedulesBackground;
 import project.app.BackgroundFrame.MainFrame.NavigationBar.SchedulesButtonFrame.SchedulesMainButtonFrame.SchedulesMainBackground.SchedulesMainBackground;
 import project.app.BackgroundFrame.MainFrame.NavigationBar.SchedulesButtonFrame.SchedulesMainButtonFrame.SchedulesMainBackground.SchedulesMainBackground_Fade;
 import project.app.BackgroundFrame.MainFrame.NavigationBar.SchedulesButtonFrame.SchedulesMainButtonFrame.SchedulesMainIcon.SchedulesMainIcon;
@@ -17,7 +16,7 @@ import static project.app.Utilities.SizeUtils.*;
 
 public class SchedulesMainButtonFrame extends Pane
 {
-    public SimpleBooleanProperty MousePosState, ClickState;
+    public SimpleBooleanProperty MousePosState, ClickState, ExtendState;
 
     public ExecutorService AnimationThreadPool;
 
@@ -80,7 +79,7 @@ public class SchedulesMainButtonFrame extends Pane
             }
         );
 
-        ClickState=new SimpleBooleanProperty(false);
+        ClickState=new SimpleBooleanProperty(false); ExtendState=new SimpleBooleanProperty(false);
         ClickState.addListener
         (
             new ChangeListener<Boolean>()
@@ -106,7 +105,8 @@ public class SchedulesMainButtonFrame extends Pane
             {
                 public void handle(MouseEvent mouseEvent)
                 {
-                    ClickState.set(true);
+                    if(ClickState.get()==true) {ExtendState.set(!ExtendState.get());}
+                    else {ClickState.set(true);}
                 }
             }
         );

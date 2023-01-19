@@ -17,7 +17,7 @@ import static project.app.Utilities.SizeUtils.*;
 
 public class StateButtonFrame extends Pane
 {
-    public SimpleBooleanProperty MousePosState, SizeState;
+    public SimpleBooleanProperty MousePosState, ExtendState;
 
     public ExecutorService AnimationThreadPool;
 
@@ -27,7 +27,6 @@ public class StateButtonFrame extends Pane
 
     public StateButtonFrame()
     {
-
         StateBackground_var=new StateBackground();
         StateIcon_var=new StateIcon();
         StateIcon_Fade_var=new StateIcon_Fade();
@@ -86,14 +85,14 @@ public class StateButtonFrame extends Pane
             }
         );
 
-        SizeState=new SimpleBooleanProperty(false);
-        SizeState.addListener
+        ExtendState =new SimpleBooleanProperty(false);
+        ExtendState.addListener
         (
             new ChangeListener<Boolean>()
             {
                 public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1)
                 {
-                    if(SizeState.get()==true)
+                    if(ExtendState.get()==true)
                     {
                         if(StateIcon_var.ClickOffService.isRunning()==true) {StateIcon_var.ClickOffService.cancel();}
                         if(StateIcon_Fade_var.ClickOffService.isRunning()==true) {StateIcon_Fade_var.ClickOffService.cancel();}
@@ -116,7 +115,7 @@ public class StateButtonFrame extends Pane
             {
                 public void handle(MouseEvent mouseEvent)
                 {
-                    SizeState.set(!SizeState.get());
+                    ExtendState.set(!ExtendState.get());
                 }
             }
         );

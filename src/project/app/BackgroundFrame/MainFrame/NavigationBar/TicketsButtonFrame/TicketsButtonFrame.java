@@ -18,7 +18,7 @@ import static project.app.Utilities.SizeUtils.*;
 
 public class TicketsButtonFrame extends Pane
 {
-    public SimpleBooleanProperty ClickState;
+    public SimpleBooleanProperty ClickState, ExtendState;
 
     public ExecutorService AnimationThreadPool;
 
@@ -60,7 +60,6 @@ public class TicketsButtonFrame extends Pane
                 protected double computeValue() {return TicketsBackground_var.heightProperty().getValue()-50*UNIT;}
             }
         );
-        StateButtonFrame_var.ClickState.bindBidirectional(TicketsMainButtonFrame_var.ClickState);
 
         setPrefWidth(60*UNIT); prefHeightProperty().bindBidirectional(TicketsBackground_var.heightProperty());
         getChildren().addAll(TicketsBackground_var, ListButtonFrame_var, AdderButtonFrame_var, TicketsMainButtonFrame_var, StateButtonFrame_var);
@@ -70,15 +69,16 @@ public class TicketsButtonFrame extends Pane
         ListButtonFrame_var.setAnimationThreadPool(AnimationThreadPool);
         AdderButtonFrame_var.setAnimationThreadPool(AnimationThreadPool);
 
-        ClickState=new SimpleBooleanProperty();
-        ClickState.bindBidirectional(TicketsMainButtonFrame_var.ClickState);
-        ClickState.addListener
+        ExtendState=new SimpleBooleanProperty();
+        ExtendState.bindBidirectional(TicketsMainButtonFrame_var.ExtendState);
+        ExtendState.bindBidirectional(StateButtonFrame_var.ExtendState);
+        ExtendState.addListener
         (
             new ChangeListener<Boolean>()
             {
                 public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1)
                 {
-                    if(ClickState.get()==true)
+                    if(ExtendState.get()==true)
                     {
                         if(TicketsBackground_var.ClickOffService.isRunning()==true) {TicketsBackground_var.ClickOffService.cancel();}
                         if(ListButtonFrame_var.FadeOutService.isRunning()==true) {ListButtonFrame_var.FadeOutService.cancel();}
@@ -95,6 +95,26 @@ public class TicketsButtonFrame extends Pane
                         TicketsBackground_var.ClickOffService.restart();
                         ListButtonFrame_var.FadeOutService.restart();
                         AdderButtonFrame_var.FadeOutService.restart();
+                    }
+                }
+            }
+        );
+
+        ClickState=new SimpleBooleanProperty();
+        ClickState.bindBidirectional(TicketsMainButtonFrame_var.ClickState);
+        ClickState.addListener
+        (
+            new ChangeListener<Boolean>()
+            {
+                public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1)
+                {
+                    if(ClickState.get()==true)
+                    {
+                        ExtendState.set(true);
+                    }
+                    else
+                    {
+                        ExtendState.set(false);
                     }
                 }
             }

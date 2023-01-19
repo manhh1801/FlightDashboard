@@ -6,18 +6,18 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import project.app.BackgroundFrame.MainFrame.NavigationBar.TicketsButtonFrame.TicketsMainButtonFrame.TicketsMainBackground.TicketsMainBackground;
 import project.app.BackgroundFrame.MainFrame.NavigationBar.TicketsButtonFrame.TicketsMainButtonFrame.TicketsMainBackground.TicketsMainBackground_Fade;
 import project.app.BackgroundFrame.MainFrame.NavigationBar.TicketsButtonFrame.TicketsMainButtonFrame.TicketsMainIcon.TicketsMainIcon;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import static project.app.Utilities.SizeUtils.UNIT;
+import static project.app.Utilities.SizeUtils.*;
 
 public class TicketsMainButtonFrame extends Pane
 {
-    public SimpleBooleanProperty MousePosState, ClickState;
+    public SimpleBooleanProperty MousePosState, ClickState, ExtendState;
 
     public ExecutorService AnimationThreadPool;
 
@@ -80,7 +80,7 @@ public class TicketsMainButtonFrame extends Pane
             }
         );
 
-        ClickState=new SimpleBooleanProperty(false);
+        ClickState=new SimpleBooleanProperty(false); ExtendState=new SimpleBooleanProperty(false);
         ClickState.addListener
         (
             new ChangeListener<Boolean>()
@@ -106,7 +106,8 @@ public class TicketsMainButtonFrame extends Pane
             {
                 public void handle(MouseEvent mouseEvent)
                 {
-                    ClickState.set(!ClickState.get());
+                    if(ClickState.get()==true) {ExtendState.set(!ExtendState.get());}
+                    else {ClickState.set(true);}
                 }
             }
         );

@@ -6,18 +6,18 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import project.app.BackgroundFrame.MainFrame.NavigationBar.TicketsButtonFrame.StateButtonFrame.StateBackground.StateBackground;
 import project.app.BackgroundFrame.MainFrame.NavigationBar.TicketsButtonFrame.StateButtonFrame.StateIcon.StateIcon;
 import project.app.BackgroundFrame.MainFrame.NavigationBar.TicketsButtonFrame.StateButtonFrame.StateIcon.StateIcon_Fade;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import static project.app.Utilities.SizeUtils.UNIT;
+import static project.app.Utilities.SizeUtils.*;
 
 public class StateButtonFrame extends Pane
 {
-    public SimpleBooleanProperty MousePosState, ClickState;
+    public SimpleBooleanProperty MousePosState, ExtendState;
 
     public ExecutorService AnimationThreadPool;
 
@@ -86,14 +86,14 @@ public class StateButtonFrame extends Pane
             }
         );
 
-        ClickState=new SimpleBooleanProperty(false);
-        ClickState.addListener
+        ExtendState =new SimpleBooleanProperty(false);
+        ExtendState.addListener
         (
             new ChangeListener<Boolean>()
             {
                 public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1)
                 {
-                    if(ClickState.get()==true)
+                    if(ExtendState.get()==true)
                     {
                         if(StateIcon_var.ClickOffService.isRunning()==true) {StateIcon_var.ClickOffService.cancel();}
                         if(StateIcon_Fade_var.ClickOffService.isRunning()==true) {StateIcon_Fade_var.ClickOffService.cancel();}
@@ -116,7 +116,7 @@ public class StateButtonFrame extends Pane
             {
                 public void handle(MouseEvent mouseEvent)
                 {
-                    ClickState.set(!ClickState.get());
+                    ExtendState.set(!ExtendState.get());
                 }
             }
         );

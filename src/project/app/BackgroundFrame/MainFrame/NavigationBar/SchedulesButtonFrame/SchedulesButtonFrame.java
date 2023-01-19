@@ -1,5 +1,7 @@
 package project.app.BackgroundFrame.MainFrame.NavigationBar.SchedulesButtonFrame;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
@@ -18,7 +20,7 @@ import static project.app.Utilities.SizeUtils.*;
 
 public class SchedulesButtonFrame extends Pane
 {
-    public SimpleBooleanProperty ClickState;
+    public SimpleBooleanProperty ClickState, ExtendState;
 
     public ExecutorService AnimationThreadPool;
 
@@ -60,7 +62,6 @@ public class SchedulesButtonFrame extends Pane
                 protected double computeValue() {return SchedulesBackground_var.heightProperty().getValue()-50*UNIT;}
             }
         );
-        StateButtonFrame_var.SizeState.bindBidirectional(SchedulesMainButtonFrame_var.ClickState);
 
         setPrefWidth(60*UNIT); prefHeightProperty().bindBidirectional(SchedulesBackground_var.heightProperty());
         getChildren().addAll(SchedulesBackground_var, MapButtonFrame_var, TimetableButtonFrame_var, SchedulesMainButtonFrame_var, StateButtonFrame_var);
@@ -70,15 +71,16 @@ public class SchedulesButtonFrame extends Pane
         MapButtonFrame_var.setAnimationThreadPool(AnimationThreadPool);
         TimetableButtonFrame_var.setAnimationThreadPool(AnimationThreadPool);
 
-        ClickState=new SimpleBooleanProperty();
-        ClickState.bindBidirectional(SchedulesMainButtonFrame_var.ClickState);
-        ClickState.addListener
+        ExtendState=new SimpleBooleanProperty();
+        ExtendState.bindBidirectional(SchedulesMainButtonFrame_var.ExtendState);
+        ExtendState.bindBidirectional(StateButtonFrame_var.ExtendState);
+        ExtendState.addListener
         (
             new ChangeListener<Boolean>()
             {
                 public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1)
                 {
-                    if(ClickState.get()==true)
+                    if(ExtendState.get()==true)
                     {
                         if(SchedulesBackground_var.ClickOffService.isRunning()==true) {SchedulesBackground_var.ClickOffService.cancel();}
                         if(MapButtonFrame_var.FadeOutService.isRunning()==true) {MapButtonFrame_var.FadeOutService.cancel();}
@@ -96,6 +98,40 @@ public class SchedulesButtonFrame extends Pane
                         MapButtonFrame_var.FadeOutService.restart();
                         TimetableButtonFrame_var.FadeOutService.restart();
                     }
+                }
+            }
+        );
+
+        ClickState=new SimpleBooleanProperty();
+        ClickState.bindBidirectional(SchedulesMainButtonFrame_var.ClickState);
+        ClickState.addListener
+        (
+            new ChangeListener<Boolean>()
+            {
+                public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1)
+                {
+                    if(ClickState.get()==true)
+                    {
+                        ExtendState.set(true);
+                    }
+                    else
+                    {
+                        ExtendState.set(false);
+                    }
+                }
+            }
+        );
+        ClickState.addListener
+        (
+            new InvalidationListener()
+            {
+                public void invalidated(Observable observable)
+                {
+                    if(ClickState.get()==true)
+                    {
+                        ExtendState.set(!ExtendState.get());
+                    }
+                    ClickState.getValue();
                 }
             }
         );
