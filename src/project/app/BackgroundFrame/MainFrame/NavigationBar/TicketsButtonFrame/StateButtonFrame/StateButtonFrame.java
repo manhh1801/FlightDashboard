@@ -86,7 +86,7 @@ public class StateButtonFrame extends Pane
             }
         );
 
-        ExtendState =new SimpleBooleanProperty(false);
+        ExtendState=new SimpleBooleanProperty(false);
         ExtendState.addListener
         (
             new ChangeListener<Boolean>()

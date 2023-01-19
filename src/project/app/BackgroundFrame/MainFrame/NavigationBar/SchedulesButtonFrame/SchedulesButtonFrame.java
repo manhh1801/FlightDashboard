@@ -121,19 +121,5 @@ public class SchedulesButtonFrame extends Pane
                 }
             }
         );
-        ClickState.addListener
-        (
-            new InvalidationListener()
-            {
-                public void invalidated(Observable observable)
-                {
-                    if(ClickState.get()==true)
-                    {
-                        ExtendState.set(!ExtendState.get());
-                    }
-                    ClickState.getValue();
-                }
-            }
-        );
     }
 }

@@ -27,9 +27,9 @@ public class TicketsMainButtonFrame extends Pane
     
     public TicketsMainButtonFrame()
     {
-        TicketsMainBackground_var =new TicketsMainBackground();
-        TicketsMainBackground_Fade_var =new TicketsMainBackground_Fade();
-        TicketsMainIcon_var =new TicketsMainIcon();
+        TicketsMainBackground_var=new TicketsMainBackground();
+        TicketsMainBackground_Fade_var=new TicketsMainBackground_Fade();
+        TicketsMainIcon_var=new TicketsMainIcon();
 
         setLayoutX(0); setLayoutY(0);
         setPrefSize(60*UNIT, 60*UNIT);

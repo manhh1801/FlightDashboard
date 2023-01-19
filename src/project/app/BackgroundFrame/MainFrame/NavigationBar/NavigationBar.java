@@ -4,12 +4,12 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
-import project.app.BackgroundFrame.MainFrame.ContentPane.PaneState.PaneState;
 import project.app.BackgroundFrame.MainFrame.NavigationBar.AppLogo.AppLogo;
 import project.app.BackgroundFrame.MainFrame.NavigationBar.ContactsButtonFrame.ContactsButtonFrame;
 import project.app.BackgroundFrame.MainFrame.NavigationBar.HomeButtonFrame.HomeButtonFrame;
@@ -22,7 +22,7 @@ import static project.app.Utilities.SizeUtils.*;
 
 public class NavigationBar extends Pane
 {
-    public PaneState.Wrapper PaneStateWrapper;
+    public SimpleIntegerProperty PaneState;
     public SimpleBooleanProperty PaneStateController;
 
     public AppLogo AppLogo_var;
@@ -42,9 +42,6 @@ public class NavigationBar extends Pane
         StatisticsButtonFrame_var=new StatisticsButtonFrame();
         ContactsButtonFrame_var=new ContactsButtonFrame();
         SettingsButtonFrame_var=new SettingsButtonFrame();
-
-        PaneStateWrapper =new PaneState.Wrapper();
-        PaneStateWrapper.set(PaneState.State.HOME);
 
 //        HomeButtonFrame_var.ClickState.bind
 //        (
@@ -95,6 +92,7 @@ public class NavigationBar extends Pane
 //            }
 //        );
 //
+        PaneState=new SimpleIntegerProperty(1);
         PaneStateController=new SimpleBooleanProperty();
         PaneStateController.bind
         (
@@ -110,19 +108,19 @@ public class NavigationBar extends Pane
             {
                 public void invalidated(Observable observable)
                 {
-                    if(PaneStateWrapper.get()==PaneState.State.TICKETS) {TicketsButtonFrame_var.ClickState.set(false);}
-                    else if(PaneStateWrapper.get()==PaneState.State.SCHEDULES) {SchedulesButtonFrame_var.ClickState.set(false);}
-                    else if(PaneStateWrapper.get()==PaneState.State.HOME) {HomeButtonFrame_var.ClickState.set(false);}
-                    else if(PaneStateWrapper.get()==PaneState.State.STATISTICS) {StatisticsButtonFrame_var.ClickState.set(false);}
-                    else if(PaneStateWrapper.get()==PaneState.State.CONTACTS) {ContactsButtonFrame_var.ClickState.set(false);}
+                    if(PaneState.get()==3) {TicketsButtonFrame_var.ClickState.set(false);}
+                    else if(PaneState.get()==2) {SchedulesButtonFrame_var.ClickState.set(false);}
+                    else if(PaneState.get()==1) {HomeButtonFrame_var.ClickState.set(false);}
+                    else if(PaneState.get()==4) {StatisticsButtonFrame_var.ClickState.set(false);}
+                    else if(PaneState.get()==5) {ContactsButtonFrame_var.ClickState.set(false);}
                     else {SettingsButtonFrame_var.ClickState.set(false);}
 
-                    if(TicketsButtonFrame_var.ClickState.get()==true) {PaneStateWrapper.set(PaneState.State.TICKETS);}
-                    else if(SchedulesButtonFrame_var.ClickState.get()==true) {PaneStateWrapper.set(PaneState.State.SCHEDULES);}
-                    else if(HomeButtonFrame_var.ClickState.get()==true) {PaneStateWrapper.set(PaneState.State.HOME);}
-                    else if(StatisticsButtonFrame_var.ClickState.get()==true) {PaneStateWrapper.set(PaneState.State.STATISTICS);}
-                    else if(ContactsButtonFrame_var.ClickState.get()==true) {PaneStateWrapper.set(PaneState.State.CONTACTS);}
-                    else {PaneStateWrapper.set(PaneState.State.SETTINGS);}
+                    if(TicketsButtonFrame_var.ClickState.get()==true) {PaneState.set(3);}
+                    else if(SchedulesButtonFrame_var.ClickState.get()==true) {PaneState.set(2);}
+                    else if(HomeButtonFrame_var.ClickState.get()==true) {PaneState.set(1);}
+                    else if(StatisticsButtonFrame_var.ClickState.get()==true) {PaneState.set(4);}
+                    else if(ContactsButtonFrame_var.ClickState.get()==true) {PaneState.set(5);}
+                    else {PaneState.set(6);}
 
                     PaneStateController.getValue();
                 }

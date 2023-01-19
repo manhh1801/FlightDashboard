@@ -1,5 +1,6 @@
 package project.app.BackgroundFrame.MainFrame.NavigationBar.TicketsButtonFrame.TicketsBackground;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;

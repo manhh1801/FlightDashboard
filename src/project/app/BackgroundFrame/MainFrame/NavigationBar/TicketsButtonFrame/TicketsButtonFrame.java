@@ -64,7 +64,7 @@ public class TicketsButtonFrame extends Pane
         setPrefWidth(60*UNIT); prefHeightProperty().bindBidirectional(TicketsBackground_var.heightProperty());
         getChildren().addAll(TicketsBackground_var, ListButtonFrame_var, AdderButtonFrame_var, TicketsMainButtonFrame_var, StateButtonFrame_var);
 
-        AnimationThreadPool= Executors.newFixedThreadPool(3);
+        AnimationThreadPool= Executors.newFixedThreadPool(4);
         TicketsBackground_var.setAnimationThreadPool(AnimationThreadPool);
         ListButtonFrame_var.setAnimationThreadPool(AnimationThreadPool);
         AdderButtonFrame_var.setAnimationThreadPool(AnimationThreadPool);
