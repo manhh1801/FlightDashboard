@@ -1,6 +1,5 @@
 package project.app.BackgroundFrame.MainFrame.NavigationBar.HomeButtonFrame.HomeBackground;
 
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import java.util.concurrent.ExecutorService;

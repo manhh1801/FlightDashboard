@@ -43,55 +43,6 @@ public class NavigationBar extends Pane
         ContactsButtonFrame_var=new ContactsButtonFrame();
         SettingsButtonFrame_var=new SettingsButtonFrame();
 
-//        HomeButtonFrame_var.ClickState.bind
-//        (
-//            new BooleanBinding()
-//            {
-//                {bind(SchedulesButtonFrame_var.ClickState, TicketsButtonFrame_var.ClickState, StatisticsButtonFrame_var.ClickState, ContactsButtonFrame_var.ClickState, SettingsButtonFrame_var.ClickState);}
-//                protected boolean computeValue() {return !(SchedulesButtonFrame_var.ClickState.get()||TicketsButtonFrame_var.ClickState.get()||StatisticsButtonFrame_var.ClickState.get()||ContactsButtonFrame_var.ClickState.get()||SettingsButtonFrame_var.ClickState.get());}
-//            }
-//        );
-//        SchedulesButtonFrame_var.ClickState.bind
-//        (
-//            new BooleanBinding()
-//            {
-//                {bind(HomeButtonFrame_var.ClickState, TicketsButtonFrame_var.ClickState, StatisticsButtonFrame_var.ClickState, ContactsButtonFrame_var.ClickState, SettingsButtonFrame_var.ClickState);}
-//                protected boolean computeValue() {return !(HomeButtonFrame_var.ClickState.get()||TicketsButtonFrame_var.ClickState.get()||StatisticsButtonFrame_var.ClickState.get()||ContactsButtonFrame_var.ClickState.get()||SettingsButtonFrame_var.ClickState.get());}
-//            }
-//        );
-//        TicketsButtonFrame_var.ClickState.bind
-//        (
-//            new BooleanBinding()
-//            {
-//                {bind(HomeButtonFrame_var.ClickState, SchedulesButtonFrame_var.ClickState, StatisticsButtonFrame_var.ClickState, ContactsButtonFrame_var.ClickState, SettingsButtonFrame_var.ClickState);}
-//                protected boolean computeValue() {return !(HomeButtonFrame_var.ClickState.get()||SchedulesButtonFrame_var.ClickState.get()||StatisticsButtonFrame_var.ClickState.get()||ContactsButtonFrame_var.ClickState.get()||SettingsButtonFrame_var.ClickState.get());}
-//            }
-//        );
-//        StatisticsButtonFrame_var.ClickState.bind
-//        (
-//            new BooleanBinding()
-//            {
-//                {bind(HomeButtonFrame_var.ClickState, SchedulesButtonFrame_var.ClickState, TicketsButtonFrame_var.ClickState, ContactsButtonFrame_var.ClickState, SettingsButtonFrame_var.ClickState);}
-//                protected boolean computeValue() {return !(HomeButtonFrame_var.ClickState.get()||SchedulesButtonFrame_var.ClickState.get()||TicketsButtonFrame_var.ClickState.get()||ContactsButtonFrame_var.ClickState.get()||SettingsButtonFrame_var.ClickState.get());}
-//            }
-//        );
-//        ContactsButtonFrame_var.ClickState.bind
-//        (
-//            new BooleanBinding()
-//            {
-//                {bind(HomeButtonFrame_var.ClickState, SchedulesButtonFrame_var.ClickState, TicketsButtonFrame_var.ClickState, StatisticsButtonFrame_var.ClickState, SettingsButtonFrame_var.ClickState);}
-//                protected boolean computeValue() {return !(HomeButtonFrame_var.ClickState.get()||SchedulesButtonFrame_var.ClickState.get()||TicketsButtonFrame_var.ClickState.get()||StatisticsButtonFrame_var.ClickState.get()||SettingsButtonFrame_var.ClickState.get());}
-//            }
-//        );
-//        SettingsButtonFrame_var.ClickState.bind
-//        (
-//            new BooleanBinding()
-//            {
-//                {bind(HomeButtonFrame_var.ClickState, SchedulesButtonFrame_var.ClickState, TicketsButtonFrame_var.ClickState, StatisticsButtonFrame_var.ClickState, ContactsButtonFrame_var.ClickState);}
-//                protected boolean computeValue() {return !(HomeButtonFrame_var.ClickState.get()||SchedulesButtonFrame_var.ClickState.get()||TicketsButtonFrame_var.ClickState.get()||StatisticsButtonFrame_var.ClickState.get()||ContactsButtonFrame_var.ClickState.get());}
-//            }
-//        );
-//
         PaneState=new SimpleIntegerProperty(1);
         PaneStateController=new SimpleBooleanProperty();
         PaneStateController.bind

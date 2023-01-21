@@ -4,9 +4,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import project.app.BackgroundFrame.BackgroundFrame;
-
 import java.io.IOException;
+
+import project.app.BackgroundFrame.BackgroundFrame;
 
 public class Launcher extends Application
 {

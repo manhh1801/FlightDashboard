@@ -4,17 +4,15 @@ import javafx.geometry.Bounds;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
-import project.app.Utilities.AnimationUtils.FadeTransitionService;
-
 import java.util.concurrent.ExecutorService;
 
+import project.app.Utilities.AnimationUtils.FadeTransitionService;
 import static project.app.Utilities.ColorUtils.*;
 import static project.app.Utilities.SizeUtils.*;
 
 public class AppLogoIconFade extends SVGPath
 {
-    public FadeTransitionService FadeInService;
-    public FadeTransitionService FadeOutService;
+    public FadeTransitionService FadeInService, FadeOutService;
 
     public AppLogoIconFade()
     {
