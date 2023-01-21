@@ -116,6 +116,7 @@ public class SearchDeleteButtonFrame extends Pane
                 public void handle(MouseEvent mouseEvent)
                 {
                     SearchTextField_linked.setText("");
+                    mouseEvent.consume();
                 }
             }
         );

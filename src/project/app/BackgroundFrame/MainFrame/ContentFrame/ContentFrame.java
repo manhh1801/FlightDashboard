@@ -39,8 +39,6 @@ public class ContentFrame extends StackPane
         ContactsPane_var=new ContactsPane();
         SettingsPane_var=new SettingsPane();
 
-
-
         setLayoutX(140*UNIT); setLayoutY(200*UNIT);
         setPrefSize(1420*UNIT, 960*UNIT);
         getChildren().addAll(HomePane_var, SchedulesPane_var, TicketsPane_var, StatisticsPane_var, ContactsPane_var, SettingsPane_var);

@@ -4,6 +4,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.ListPane.SearchField.SearchBackground.SearchBackground;
 import project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.ListPane.SearchField.SearchDeleteButtonFrame.SearchDeleteButtonFrame;
@@ -94,6 +96,29 @@ public class SearchField extends Pane
                         if(SearchDeleteButtonFrame_var.FadeOutService.isRunning()==true) {SearchDeleteButtonFrame_var.FadeOutService.cancel();}
                         SearchDeleteButtonFrame_var.FadeInService.restart();
                     }
+                }
+            }
+        );
+
+        addEventFilter
+        (
+            MouseEvent.MOUSE_PRESSED,
+            new EventHandler<MouseEvent>()
+            {
+                public void handle(MouseEvent mouseEvent)
+                {
+                    SearchTextField_var.requestFocus();
+                }
+            }
+        );
+        addEventHandler
+        (
+            MouseEvent.MOUSE_RELEASED,
+            new EventHandler<MouseEvent>()
+            {
+                public void handle(MouseEvent mouseEvent)
+                {
+                    SearchTextField_var.requestFocus();
                 }
             }
         );

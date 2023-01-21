@@ -16,7 +16,7 @@ public class SearchTextField extends TextField
     public SearchTextField()
     {
         setPromptText("Type here to search by customer's name . . .");
-        setStyle("-fx-border-color: transparent; -fx-background-color: transparent; -fx-text-fill: #EDFFFC; -fx-prompt-text-fill: #636678;");
+        setStyle("-fx-border-color: transparent; -fx-background-color: transparent; -fx-highlight-fill: #292A32; -fx-text-fill: #EDFFFC; -fx-prompt-text-fill: #636678;");
         setFont(AVERTA(0, 16*UNIT));
         setAlignment(Pos.CENTER_LEFT);
         setLayoutX(45*UNIT); setLayoutY(12*UNIT);
@@ -39,25 +39,14 @@ public class SearchTextField extends TextField
                         if(newPropertyValue)
                         {
                             setPromptText("");
-                            setStyle("-fx-border-color: transparent; -fx-background-color: transparent; -fx-text-fill: #EDFFFC; -fx-prompt-text-fill: #636678;");
+                            setStyle("-fx-border-color: transparent; -fx-background-color: transparent; -fx-highlight-fill: #636678; -fx-text-fill: #EDFFFC; -fx-prompt-text-fill: #636678;");
                         }
                         else
                         {
                             setPromptText("Type here to search by customer's name . . .");
-                            setStyle("-fx-border-color: transparent; -fx-background-color: transparent; -fx-text-fill: #636678; -fx-prompt-text-fill: #636678;");
+                            setStyle("-fx-border-color: transparent; -fx-background-color: transparent; -fx-highlight-fill: #636678; -fx-text-fill: #636678; -fx-prompt-text-fill: #636678;");
                         }
                     }
-                }
-            }
-        );
-
-        setOnMousePressed
-        (
-            new EventHandler<MouseEvent>()
-            {
-                public void handle(MouseEvent mouseEvent)
-                {
-                    requestFocus();
                 }
             }
         );
