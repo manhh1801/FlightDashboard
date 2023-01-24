@@ -1,0 +1,39 @@
+.linear-fill-transition-top
+{
+    -fx-text-fill: linear-gradient(to top, -gradient-from, -gradient-to);
+}
+
+.linear-fill-transition-bottom
+{
+    -fx-text-fill: linear-gradient(to bottom, -gradient-from, -gradient-to);
+}
+
+.linear-fill-transition-left
+{
+    -fx-text-fill: linear-gradient(to left, -gradient-from, -gradient-to);
+}
+
+.linear-fill-transition-right
+{
+    -fx-text-fill: linear-gradient(to right, -gradient-from, -gradient-to);
+}
+
+.linear-fill-transition-top-left
+{
+    -fx-text-fill: linear-gradient(to top left, -gradient-from, -gradient-to);
+}
+
+.linear-fill-transition-top-right
+{
+    -fx-text-fill: linear-gradient(to top right, -gradient-from, -gradient-to);
+}
+
+.linear-fill-transition-bottom-left
+{
+    -fx-text-fill: linear-gradient(to bottom left, -gradient-from, -gradient-to);
+}
+
+.linear-fill-transition-bottom-right
+{
+    -fx-text-fill: linear-gradient(to bottom right, -gradient-from, -gradient-to);
+}

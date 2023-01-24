@@ -7,6 +7,7 @@ import javafx.scene.paint.Stop;
 
 public class ColorUtils
 {
+    public final static Color BLACK(double Opacity) {return Color.web("020414", Opacity);}
     public final static Color DARK_GRAY(double Opacity) {return Color.web("292A32", Opacity);}
     public final static Color GRAY(double Opacity) {return Color.web("636678", Opacity);}
     public final static Color LIGHT_GRAY=Color.web("4A4F56");

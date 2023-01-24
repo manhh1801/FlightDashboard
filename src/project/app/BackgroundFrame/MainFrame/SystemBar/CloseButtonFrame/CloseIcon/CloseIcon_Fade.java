@@ -13,8 +13,7 @@ import static project.app.Utilities.SizeUtils.*;
 
 public class CloseIcon_Fade extends SVGPath
 {
-    public FadeTransitionService FadeInService;
-    public FadeTransitionService FadeOutService;
+    public FadeTransitionService FadeInService, FadeOutService;
 
     public CloseIcon_Fade()
     {
