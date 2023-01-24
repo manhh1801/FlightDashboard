@@ -14,7 +14,6 @@ public class Launcher extends Application
     {
         BackgroundFrame BackgroundFrame_var=new BackgroundFrame();
         Scene Scene_var = new Scene(BackgroundFrame_var);
-//        Scene_var.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         Stage_var.initStyle(StageStyle.UNDECORATED);
         Stage_var.setScene(Scene_var);
         Stage_var.show();

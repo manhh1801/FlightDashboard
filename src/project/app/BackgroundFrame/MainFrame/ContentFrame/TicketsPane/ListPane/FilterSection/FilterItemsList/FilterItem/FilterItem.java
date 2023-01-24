@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.ListPane.FilterSection.FilterItemsList.FilterItem.FilterItemBackground.FilterItemBackground;
+import project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.ListPane.FilterSection.FilterItemsList.FilterItem.FilterItemBackground.FilterItemGradientBackground;
 import project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.ListPane.FilterSection.FilterItemsList.FilterItem.FilterItemIcon.FilterItemIcon;
 import project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.ListPane.FilterSection.FilterItemsList.FilterItem.FilterItemName.FilterItemName;
 import project.app.Utilities.AnimationUtils.FadeTransitionService;
@@ -23,6 +24,7 @@ public class FilterItem extends Pane
     public FadeTransitionService FadeInService, FadeOutService;
 
     public FilterItemBackground FilterItemBackground_var;
+    public FilterItemGradientBackground FilterItemGradientBackground_var;
     public FilterItemIcon FilterItemIcon_var;
     public FilterItemName FilterItemName_var;
 
@@ -32,11 +34,12 @@ public class FilterItem extends Pane
         FadeOutService=new FadeTransitionService(Duration.millis(150), this, 1, 0);
 
         FilterItemBackground_var=new FilterItemBackground();
+        FilterItemGradientBackground_var=new FilterItemGradientBackground();
         FilterItemIcon_var=new FilterItemIcon();
         FilterItemName_var=new FilterItemName();
 
         setPrefSize(60*UNIT, 60*UNIT);
-        getChildren().addAll(FilterItemBackground_var, FilterItemIcon_var, FilterItemName_var);
+        getChildren().addAll(FilterItemBackground_var, FilterItemGradientBackground_var, FilterItemIcon_var, FilterItemName_var);
         setOpacity(0);
 
         FilterTypeState=new SimpleIntegerProperty(1);
@@ -72,6 +75,7 @@ public class FilterItem extends Pane
 
         ClickState=new SimpleBooleanProperty(false);
         ClickState.bindBidirectional(FilterItemBackground_var.ClickState);
+        ClickState.bindBidirectional(FilterItemGradientBackground_var.ClickState);
         ClickState.bindBidirectional(FilterItemIcon_var.ClickState);
         ClickState.bindBidirectional(FilterItemName_var.ClickState);
         setOnMouseClicked

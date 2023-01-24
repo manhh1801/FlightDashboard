@@ -6,8 +6,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import project.app.Utilities.AnimationUtils.FillTransitionService;
-import project.app.Utilities.AnimationUtils.LinearFillTransitionService;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -21,14 +19,11 @@ public class FilterItemBackground extends Rectangle
     public ExecutorService AnimationThreadPool;
 
     public FillTransitionService EnterService, ExitService;
-    public LinearFillTransitionService ClickOnService, ClickOffService;
 
     public FilterItemBackground()
     {
         EnterService=new FillTransitionService(Duration.millis(50), this, DARK_GRAY(1), GRAY(1));
         ExitService=new FillTransitionService(Duration.millis(50), this, GRAY(1), DARK_GRAY(1));
-        ClickOnService=new LinearFillTransitionService(Duration.millis(50), this, "right", "636678", "636678", "92FE9D", "00C9FF");
-        ClickOffService=new LinearFillTransitionService(Duration.millis(50), this, "right", "92FE9D", "00C9FF", "636678", "636678");
 
         setFill(DARK_GRAY(1));
         setArcWidth(20*UNIT); setArcHeight(20*UNIT);
@@ -61,34 +56,12 @@ public class FilterItemBackground extends Rectangle
                 }
             }
         );
-
         ClickState=new SimpleBooleanProperty(false);
-        ClickState.addListener
-        (
-            new ChangeListener<Boolean>()
-            {
-                public void changed(ObservableValue<? extends Boolean> observableValue, Boolean OldValue, Boolean NewValue)
-                {
-                    if(NewValue==true)
-                    {
-                        if(ClickOffService.isRunning()) {ClickOffService.cancel();}
-                        ClickOnService.restart();
-                    }
-                    else
-                    {
-                        if(ClickOnService.isRunning()) {ClickOnService.cancel();}
-                        ClickOffService.restart();
-                    }
-                }
-            }
-        );
     }
 
     public void setAnimationThreadPool(ExecutorService AnimationThreadPool)
     {
         EnterService.setExecutor(AnimationThreadPool);
         ExitService.setExecutor(AnimationThreadPool);
-        ClickOnService.setExecutor(AnimationThreadPool);
-        ClickOffService.setExecutor(AnimationThreadPool);
     }
 }
