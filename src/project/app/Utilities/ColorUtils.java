@@ -37,4 +37,18 @@ public class ColorUtils
         LinearGradient MainGradient=new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE, GradientStops);
         return MainGradient;
     }
+
+    public final static LinearGradient WHITE_GRADIENT()
+    {
+        Stop GradientStops[]={new Stop(0, Color.web("EDFFFC", 0.3)), new Stop(1, Color.web("EDFFFC", 0.7))};
+        LinearGradient MainGradient=new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE, GradientStops);
+        return MainGradient;
+    }
+
+    public final static LinearGradient BLACK_GRADIENT()
+    {
+        Stop GradientStops[]={new Stop(0, Color.web("020414", 0.3)), new Stop(1, Color.web("020414", 0.7))};
+        LinearGradient MainGradient=new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE, GradientStops);
+        return MainGradient;
+    }
 }
