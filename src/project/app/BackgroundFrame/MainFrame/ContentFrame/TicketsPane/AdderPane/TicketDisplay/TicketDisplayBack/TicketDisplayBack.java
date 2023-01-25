@@ -33,15 +33,11 @@ public class TicketDisplayBack extends Pane
         ImageView TicketDisplayBackEconomic=new ImageView();
         try {TicketDisplayBackEconomic.setImage(new Image(new FileInputStream("resources/Images/economic.png")));}
         catch(FileNotFoundException f) {}
-        TicketDisplayBackEconomic.setSmooth(true);
-        TicketDisplayBackEconomic.setCache(true);
         TicketDisplayBackEconomic.setLayoutX(0); TicketDisplayBackEconomic.setLayoutY(0);
         TicketDisplayBackEconomic.setFitWidth(400*UNIT); TicketDisplayBackEconomic.setFitHeight(240*UNIT);
         ImageView TicketDisplayBackBusiness=new ImageView();
         try {TicketDisplayBackBusiness.setImage(new Image(new FileInputStream("resources/Images/business.png")));}
         catch(FileNotFoundException f) {}
-        TicketDisplayBackBusiness.setSmooth(true);
-        TicketDisplayBackBusiness.setCache(true);
         TicketDisplayBackBusiness.setLayoutX(0); TicketDisplayBackBusiness.setLayoutY(0);
         TicketDisplayBackBusiness.setFitWidth(400*UNIT); TicketDisplayBackBusiness.setFitHeight(240*UNIT);
         TicketDisplayBackBusiness.setOpacity(0);

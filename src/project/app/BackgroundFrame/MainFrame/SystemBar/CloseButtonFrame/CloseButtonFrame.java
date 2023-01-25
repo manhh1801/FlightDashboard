@@ -55,7 +55,7 @@ public class CloseButtonFrame extends Pane
                     }
                     else
                     {
-                        if(CloseBackground_var.EnterService.isRunning()==true) {CloseBackground_var.ExitService.cancel();}
+                        if(CloseBackground_var.EnterService.isRunning()==true) {CloseBackground_var.EnterService.cancel();}
                         if(CloseIcon_Fade_var.FadeInService.isRunning()==true) {CloseIcon_Fade_var.FadeOutService.cancel();}
                         CloseBackground_var.ExitService.restart();
                         CloseIcon_Fade_var.FadeOutService.restart();

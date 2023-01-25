@@ -53,7 +53,6 @@ public class SearchField extends Pane
         (
             new ChangeListener<Boolean>()
             {
-                @Override
                 public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1)
                 {
                     if(TypingState.get()==true)

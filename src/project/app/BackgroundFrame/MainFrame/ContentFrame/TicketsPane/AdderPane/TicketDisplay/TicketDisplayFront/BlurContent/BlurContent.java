@@ -36,15 +36,11 @@ public class BlurContent extends Pane
         ImageView TicketDisplayBackEconomic=new ImageView();
         try {TicketDisplayBackEconomic.setImage(new Image(new FileInputStream("resources/Images/economic.png")));}
         catch(FileNotFoundException f) {}
-        TicketDisplayBackEconomic.setSmooth(true);
-        TicketDisplayBackEconomic.setCache(true);
         TicketDisplayBackEconomic.setLayoutX(-40*UNIT); TicketDisplayBackEconomic.setLayoutY(-40*UNIT);
         TicketDisplayBackEconomic.setFitWidth(400*UNIT); TicketDisplayBackEconomic.setFitHeight(240*UNIT);
         ImageView TicketDisplayBackBusiness=new ImageView();
         try {TicketDisplayBackBusiness.setImage(new Image(new FileInputStream("resources/Images/business.png")));}
         catch(FileNotFoundException f) {}
-        TicketDisplayBackBusiness.setSmooth(true);
-        TicketDisplayBackBusiness.setCache(true);
         TicketDisplayBackBusiness.setLayoutX(-40*UNIT); TicketDisplayBackBusiness.setLayoutY(-40*UNIT);
         TicketDisplayBackBusiness.setFitWidth(400*UNIT); TicketDisplayBackBusiness.setFitHeight(240*UNIT);
         TicketDisplayBackBusiness.setOpacity(0);

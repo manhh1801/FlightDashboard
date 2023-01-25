@@ -58,7 +58,7 @@ public class MinimizeButtonFrame extends Pane
                     }
                     else
                     {
-                        if(MinimizeBackground_var.EnterService.isRunning()==true) {MinimizeBackground_var.ExitService.cancel();}
+                        if(MinimizeBackground_var.EnterService.isRunning()==true) {MinimizeBackground_var.EnterService.cancel();}
                         if(MinimizeIcon_Fade_var.FadeInService.isRunning()==true) {MinimizeIcon_Fade_var.FadeOutService.cancel();}
                         MinimizeBackground_var.ExitService.restart();
                         MinimizeIcon_Fade_var.FadeOutService.restart();
