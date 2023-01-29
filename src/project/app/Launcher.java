@@ -12,6 +12,8 @@ public class Launcher extends Application
 {
     public void start(Stage Stage_var) throws IOException
     {
+        try {Class.forName("com.mysql.cj.jdbc.Driver");}
+        catch(ClassNotFoundException c) {}
         BackgroundFrame BackgroundFrame_var=new BackgroundFrame();
         Scene Scene_var = new Scene(BackgroundFrame_var);
         Stage_var.initStyle(StageStyle.UNDECORATED);

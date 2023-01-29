@@ -12,5 +12,5 @@ public class FontUtils
         else return null;
     }
 
-    public static Font FLARE(double FontSize) {return Font.loadFont("file:resources/Font/Flare.otf", FontSize);}
+    public static Font FLARE(double FontSize) {return Font.loadFont("file:resources/Fonts/Flare.otf", FontSize);}
 }

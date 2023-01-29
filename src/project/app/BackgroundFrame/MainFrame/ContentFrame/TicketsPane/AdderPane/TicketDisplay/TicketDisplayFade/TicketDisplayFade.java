@@ -34,7 +34,7 @@ public class TicketDisplayFade extends Rectangle
         setEffect(new GaussianBlur(25*UNIT));
         setOpacity(0);
 
-        AnimationThreadPool= Executors.newFixedThreadPool(1);
+        AnimationThreadPool=Executors.newFixedThreadPool(1);
         setAnimationThreadPool(AnimationThreadPool);
 
         MousePosState=new SimpleBooleanProperty(false);

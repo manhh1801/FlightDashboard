@@ -37,4 +37,19 @@ public class SequentialTransitionService<Void> extends Service
             }
         };
     }
+
+    public void setAnimation(Animation... TransitionList)
+    {
+        Animation=new SequentialTransition(TransitionList);
+        setOnCancelled
+        (
+            new EventHandler<WorkerStateEvent>()
+            {
+                public void handle(WorkerStateEvent workerStateEvent)
+                {
+                    Animation.stop();
+                }
+            }
+        );
+    }
 }

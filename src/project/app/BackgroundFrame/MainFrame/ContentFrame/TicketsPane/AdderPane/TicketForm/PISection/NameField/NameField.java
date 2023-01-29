@@ -1,10 +1,13 @@
 package project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.AdderPane.TicketForm.PISection.NameField;
 
+import javafx.beans.binding.StringBinding;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.AdderPane.TicketForm.PISection.NameField.LetterCountDisplay.LetterCountDisplay;
@@ -20,6 +23,7 @@ import static project.app.Utilities.SizeUtils.UNIT;
 public class NameField extends Pane
 {
     public SimpleBooleanProperty TypingState;
+    public SimpleStringProperty CustomerName;
 
     public ExecutorService AnimationThreadPool;
 
@@ -43,6 +47,19 @@ public class NameField extends Pane
         NameFieldBackground_var.setAnimationThreadPool(AnimationThreadPool);
         NameFieldTitle_var.setAnimationThreadPool(AnimationThreadPool);
         LetterCountDisplay_var.setAnimationThreadPool(AnimationThreadPool);
+
+        CustomerName=new SimpleStringProperty("");
+        CustomerName.bind
+        (
+            new StringBinding()
+            {
+                {bind(NameTypeField_var.textProperty());}
+                protected String computeValue()
+                {
+                    return NameTypeField_var.textProperty().get().trim();
+                }
+            }
+        );
 
         TypingState=new SimpleBooleanProperty();
         TypingState.bind(NameTypeField_var.focusedProperty());
@@ -93,6 +110,17 @@ public class NameField extends Pane
                             {
                                 NameTypeField_var.requestFocus();
                             }
+            }
+        );
+
+        setOnKeyPressed
+        (
+            new EventHandler<KeyEvent>()
+            {
+                public void handle(KeyEvent keyEvent)
+                {
+                    if(keyEvent.getCode()==KeyCode.ESCAPE||keyEvent.getCode()==KeyCode.ENTER) {requestFocus();}
+                }
             }
         );
 

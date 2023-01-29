@@ -21,7 +21,7 @@ import static project.app.Utilities.SizeUtils.*;
 
 public class TicketDisplayBack extends Pane
 {
-    public SimpleBooleanProperty MousePosState, TicketTypeState;
+    public SimpleBooleanProperty MousePosState, TicketType;
 
     public ExecutorService AnimationThreadPool;
 
@@ -81,8 +81,8 @@ public class TicketDisplayBack extends Pane
             }
         );
 
-        TicketTypeState=new SimpleBooleanProperty(false);
-        TicketTypeState.addListener
+        TicketType=new SimpleBooleanProperty(false);
+        TicketType.addListener
         (
             new ChangeListener<Boolean>()
             {

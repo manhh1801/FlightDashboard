@@ -37,4 +37,19 @@ public class ParallelTransitionService<Void> extends Service
             }
         };
     }
+
+    public void setAnimation(Animation... TransitionList)
+    {
+        Animation=new ParallelTransition(TransitionList);
+        setOnCancelled
+        (
+            new EventHandler<WorkerStateEvent>()
+            {
+                public void handle(WorkerStateEvent workerStateEvent)
+                {
+                    Animation.stop();
+                }
+            }
+        );
+    }
 }

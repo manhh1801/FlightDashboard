@@ -21,9 +21,9 @@ public class StrokeTransitionService<Void> extends Service
             new EventHandler<WorkerStateEvent>()
             {
                 public void handle(WorkerStateEvent workerStateEvent)
-                            {
-                                Transition.stop();
-                            }
+                {
+                    Transition.stop();
+                }
             }
         );
     }

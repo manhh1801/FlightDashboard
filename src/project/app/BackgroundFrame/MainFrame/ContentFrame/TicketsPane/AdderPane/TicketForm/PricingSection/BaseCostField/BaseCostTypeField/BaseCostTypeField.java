@@ -18,8 +18,9 @@ public class BaseCostTypeField extends TextField
 
     public BaseCostTypeField()
     {
+        setText("20000");
         setPromptText("Base Cost");
-        setStyle("-fx-border-color: transparent; -fx-background-color: transparent; -fx-highlight-fill: #292A32; -fx-text-fill: #EDFFFC; -fx-prompt-text-fill: #636678;");
+        setStyle("-fx-border-color: transparent; -fx-background-color: transparent; -fx-highlight-fill: #292A32; -fx-text-fill: #636678; -fx-prompt-text-fill: #636678;");
         setFont(AVERTA(0, 13*UNIT));
         setAlignment(Pos.CENTER_LEFT);
         setLayoutX(5*UNIT); setLayoutY(15.5*UNIT);

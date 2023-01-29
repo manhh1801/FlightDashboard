@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.ListPane.SearchField.SearchBackground.SearchBackground;
@@ -118,6 +120,17 @@ public class SearchField extends Pane
                 public void handle(MouseEvent mouseEvent)
                 {
                     SearchTextField_var.requestFocus();
+                }
+            }
+        );
+
+        setOnKeyPressed
+        (
+            new EventHandler<KeyEvent>()
+            {
+                public void handle(KeyEvent keyEvent)
+                {
+                    if(keyEvent.getCode()==KeyCode.ESCAPE||keyEvent.getCode()==KeyCode.ENTER) {requestFocus();}
                 }
             }
         );

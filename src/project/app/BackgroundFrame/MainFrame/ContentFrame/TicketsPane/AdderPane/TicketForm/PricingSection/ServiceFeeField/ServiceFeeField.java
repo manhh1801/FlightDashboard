@@ -1,9 +1,13 @@
 package project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.AdderPane.TicketForm.PricingSection.ServiceFeeField;
 
+import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.AdderPane.TicketForm.PricingSection.ServiceFeeField.LetterCountDisplay.LetterCountDisplay;
@@ -19,6 +23,8 @@ import static project.app.Utilities.SizeUtils.UNIT;
 public class ServiceFeeField extends Pane
 {
     public SimpleBooleanProperty TypingState;
+
+    public SimpleIntegerProperty ServiceFee;
 
     public ExecutorService AnimationThreadPool;
 
@@ -42,6 +48,21 @@ public class ServiceFeeField extends Pane
         ServiceFeeFieldBackground_var.setAnimationThreadPool(AnimationThreadPool);
         ServiceFeeFieldTitle_var.setAnimationThreadPool(AnimationThreadPool);
         LetterCountDisplay_var.setAnimationThreadPool(AnimationThreadPool);
+
+        ServiceFee=new SimpleIntegerProperty(0);
+        ServiceFee.bind
+        (
+            new IntegerBinding()
+            {
+                {bind(ServiceFeeTypeField_var.textProperty());}
+                protected int computeValue()
+                {
+                    String Value=ServiceFeeTypeField_var.textProperty().get();
+                    if(Value!="") {return Integer.parseInt(Value);}
+                    else {return 0;}
+                }
+            }
+        );
 
         TypingState=new SimpleBooleanProperty();
         TypingState.bind(ServiceFeeTypeField_var.focusedProperty());
@@ -96,6 +117,17 @@ public class ServiceFeeField extends Pane
                             {
                                 ServiceFeeTypeField_var.requestFocus();
                             }
+            }
+        );
+
+        setOnKeyPressed
+        (
+            new EventHandler<KeyEvent>()
+            {
+                public void handle(KeyEvent keyEvent)
+                {
+                    if(keyEvent.getCode()==KeyCode.ESCAPE||keyEvent.getCode()==KeyCode.ENTER) {requestFocus();}
+                }
             }
         );
 

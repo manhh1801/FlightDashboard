@@ -1,7 +1,5 @@
 package project.app.BackgroundFrame.MainFrame;
 
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import project.app.BackgroundFrame.MainFrame.ContentFrame.ContentFrame;
@@ -30,6 +28,7 @@ public class MainFrame extends Pane
 
         NavigationBar_var.PaneState.bindBidirectional(TitleBar_var.PaneTitle_var.PaneState);
         NavigationBar_var.PaneState.bindBidirectional(ContentFrame_var.PaneState);
+        TitleBar_var.ModeChooser_var.ModeState.bindBidirectional(ContentFrame_var.TicketsPane_var.ModeState);
 
         setLayoutX((SCREEN_WIDTH-1600)*UNIT/2); setLayoutY(0);
         setPrefWidth(1600*UNIT); setPrefHeight(1200*UNIT);

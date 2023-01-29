@@ -1,9 +1,13 @@
 package project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.AdderPane.TicketForm.PricingSection.BaseCostField;
 
+import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.AdderPane.TicketForm.PricingSection.BaseCostField.LetterCountDisplay.LetterCountDisplay;
@@ -19,6 +23,8 @@ import static project.app.Utilities.SizeUtils.UNIT;
 public class BaseCostField extends Pane
 {
     public SimpleBooleanProperty TypingState;
+
+    public SimpleIntegerProperty BaseCost;
 
     public ExecutorService AnimationThreadPool;
 
@@ -42,6 +48,21 @@ public class BaseCostField extends Pane
         BaseCostFieldBackground_var.setAnimationThreadPool(AnimationThreadPool);
         BaseCostFieldTitle_var.setAnimationThreadPool(AnimationThreadPool);
         LetterCountDisplay_var.setAnimationThreadPool(AnimationThreadPool);
+
+        BaseCost=new SimpleIntegerProperty(20000);
+        BaseCost.bind
+        (
+            new IntegerBinding()
+            {
+                {bind(BaseCostTypeField_var.textProperty());}
+                protected int computeValue()
+                {
+                    String Value=BaseCostTypeField_var.textProperty().get();
+                    if(Value!="") {return Integer.parseInt(Value);}
+                    else {return 0;}
+                }
+            }
+        );
 
         TypingState=new SimpleBooleanProperty();
         TypingState.bind(BaseCostTypeField_var.focusedProperty());
@@ -96,6 +117,17 @@ public class BaseCostField extends Pane
                             {
                                 BaseCostTypeField_var.requestFocus();
                             }
+            }
+        );
+
+        setOnKeyPressed
+        (
+            new EventHandler<KeyEvent>()
+            {
+                public void handle(KeyEvent keyEvent)
+                {
+                    if(keyEvent.getCode()==KeyCode.ESCAPE||keyEvent.getCode()==KeyCode.ENTER) {requestFocus();}
+                }
             }
         );
 

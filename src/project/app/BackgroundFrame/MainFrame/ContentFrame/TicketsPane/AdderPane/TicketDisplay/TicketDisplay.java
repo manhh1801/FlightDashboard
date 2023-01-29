@@ -1,6 +1,9 @@
 package project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.AdderPane.TicketDisplay;
 
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -12,7 +15,12 @@ import static project.app.Utilities.SizeUtils.*;
 
 public class TicketDisplay extends Pane
 {
-    public SimpleBooleanProperty MousePosState, TicketTypeState;
+    public SimpleBooleanProperty MousePosState;
+
+    public SimpleBooleanProperty TicketType;
+
+    public SimpleStringProperty CustomerName, PassportID, FlightCode;
+    public SimpleIntegerProperty FromLocation, ToLocation;
 
     public TicketDisplayFade TicketDisplayFade_var;
     public TicketDisplayBack TicketDisplayBack_var;
@@ -53,19 +61,30 @@ public class TicketDisplay extends Pane
             }
         );
 
-        TicketTypeState=new SimpleBooleanProperty(false);
-        TicketTypeState.bindBidirectional(TicketDisplayBack_var.TicketTypeState);
-        TicketTypeState.bindBidirectional(TicketDisplayFront_var.TicketTypeState);
+        TicketType=new SimpleBooleanProperty(false);
+        TicketType.bindBidirectional(TicketDisplayBack_var.TicketType);
+        TicketType.bindBidirectional(TicketDisplayFront_var.TicketType);
         setOnMouseClicked
         (
             new EventHandler<MouseEvent>()
             {
                 public void handle(MouseEvent mouseEvent)
                 {
-                    TicketTypeState.set(!TicketTypeState.get());
+                    TicketType.set(!TicketType.get());
                 }
             }
         );
 
+        CustomerName=new SimpleStringProperty("");
+        CustomerName.bindBidirectional(TicketDisplayFront_var.NameContent_var.CustomerName);
+        PassportID=new SimpleStringProperty("");
+        PassportID.bindBidirectional(TicketDisplayFront_var.PassportIDContent_var.PassportID);
+        FlightCode=new SimpleStringProperty("--");
+        FlightCode.bindBidirectional(TicketDisplayFront_var.FlightContent_var.FlightCode);
+        FlightCode.bindBidirectional(TicketDisplayFront_var.DepartureTimeContent_var.FlightCode);
+        FromLocation=new SimpleIntegerProperty(0);
+        FromLocation.bindBidirectional(TicketDisplayFront_var.FromContent_var.FromLocation);
+        ToLocation=new SimpleIntegerProperty(0);
+        ToLocation.bindBidirectional(TicketDisplayFront_var.ToContent_var.ToLocation);
     }
 }
