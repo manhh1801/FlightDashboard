@@ -58,8 +58,12 @@ public class BaseCostField extends Pane
                 protected int computeValue()
                 {
                     String Value=BaseCostTypeField_var.textProperty().get();
-                    if(Value!="") {return Integer.parseInt(Value);}
-                    else {return 0;}
+                    try
+                    {
+                        if(Value!="") {return Integer.parseInt(Value);}
+                        else {return 0;}
+                    }
+                    catch(Exception e) {return 0;}
                 }
             }
         );

@@ -9,10 +9,10 @@ import javafx.scene.text.TextAlignment;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.TimeZone;
+import java.time.ZoneId;
 
 import static project.app.Utilities.ColorUtils.GRAY;
-import static project.app.Utilities.DatabaseUtils.DatabaseUtils.getDepartureTime;
+import static project.app.Utilities.DatabaseUtils.getDepartureTime;
 import static project.app.Utilities.FontUtils.AVERTA;
 import static project.app.Utilities.SizeUtils.UNIT;
 import static project.app.Utilities.TimeUtils.*;
@@ -38,7 +38,7 @@ public class TimeDisplay extends Text
                 public void changed(ObservableValue<? extends String> observableValue, String OldValue, String NewValue)
                 {
                     long DepartureTime=getDepartureTime(NewValue);
-                    if(DepartureTime!=0) {setText(renderTime(LocalDateTime.ofInstant(Instant.ofEpochMilli(DepartureTime), TimeZone.getDefault().toZoneId()))+" (GMT+7)");}
+                    if(DepartureTime!=0) {setText(renderTime(LocalDateTime.ofInstant(Instant.ofEpochMilli(DepartureTime), ZoneId.of("GMT+7")))+" (GMT+7)");}
                     else {setText("");}
                 }
             }

@@ -23,7 +23,7 @@ public class FlightContainer extends FlowPane
     public FlightContainer()
     {
         setLayoutX(0); setLayoutY(0);
-        setPrefWidth(120*UNIT);
+        setPrefWidth(140*UNIT);
 
         FlightList=new SimpleObjectProperty<ArrayList<String>>();
         FlightList.addListener

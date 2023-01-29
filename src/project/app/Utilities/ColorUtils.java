@@ -15,6 +15,8 @@ public class ColorUtils
     public final static Color GREEN_BLACK(double Opacity) {return Color.web("092E27", Opacity);}
     public final static Color GREEN_GRAY(double Opacity){return Color.web("95A7A4", Opacity);}
     public final static Color GREEN_WHITE(double Opacity) {return Color.web("C5F9E6", Opacity);}
+    public final static Color GREEN(double Opacity) {return Color.web("34E985", Opacity);}
+    public final static Color RED(double Opacity) {return Color.web("F52525", Opacity);}
 
     private static LinearGradient MAIN_GRADIENT()
     {

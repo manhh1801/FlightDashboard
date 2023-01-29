@@ -58,8 +58,12 @@ public class ServiceFeeField extends Pane
                 protected int computeValue()
                 {
                     String Value=ServiceFeeTypeField_var.textProperty().get();
-                    if(Value!="") {return Integer.parseInt(Value);}
-                    else {return 0;}
+                    try
+                    {
+                        if(Value!="") {return Integer.parseInt(Value);}
+                        else {return 0;}
+                    }
+                    catch(Exception e) {return 0;}
                 }
             }
         );

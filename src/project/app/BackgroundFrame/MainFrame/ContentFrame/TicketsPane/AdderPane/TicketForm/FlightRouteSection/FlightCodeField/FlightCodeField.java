@@ -32,7 +32,7 @@ public class FlightCodeField extends Pane
         FlightCodePicker_var =new FlightCodePicker();
 
         setLayoutX(0); setLayoutY(100*UNIT);
-        setPrefSize(120*UNIT, 40*UNIT);
+        setPrefSize(140*UNIT, 40*UNIT);
         getChildren().addAll(FlightCodeFieldBackground_var, FlightCodeText_var, StateButtonFrame_var, FlightCodePicker_var);
 
         FlightCodeFieldBackground_var.Height.bindBidirectional(FlightCodePicker_var.Height);

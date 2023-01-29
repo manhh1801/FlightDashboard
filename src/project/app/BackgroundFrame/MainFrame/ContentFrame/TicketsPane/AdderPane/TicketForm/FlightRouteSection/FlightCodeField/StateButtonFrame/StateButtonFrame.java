@@ -28,7 +28,7 @@ public class StateButtonFrame extends Pane
         StateIcon_var=new StateIcon();
         StateIcon_Fade_var=new StateIcon_Fade();
 
-        setLayoutX(90*UNIT); setLayoutY(10*UNIT);
+        setLayoutX(110*UNIT); setLayoutY(10*UNIT);
         setPrefSize(20*UNIT, 20*UNIT);
         getChildren().addAll(StateIcon_var, StateIcon_Fade_var);
 

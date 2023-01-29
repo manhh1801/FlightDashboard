@@ -1,6 +1,5 @@
 package project.app.BackgroundFrame.MainFrame.ContentFrame.TicketsPane.AdderPane.TicketDisplay.TicketDisplayFront.DepartureTime;
 
-import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,10 +11,10 @@ import project.app.Utilities.AnimationUtils.FillTransitionService;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.TimeZone;
+import java.time.ZoneId;
 import java.util.concurrent.ExecutorService;
 
-import static project.app.Utilities.DatabaseUtils.DatabaseUtils.getDepartureTime;
+import static project.app.Utilities.DatabaseUtils.getDepartureTime;
 import static project.app.Utilities.TimeUtils.*;
 import static project.app.Utilities.ColorUtils.*;
 import static project.app.Utilities.FontUtils.FLARE;
@@ -47,7 +46,7 @@ public class DepartureTimeContent extends Text
                 public void changed(ObservableValue<? extends String> observableValue, String OldValue, String NewValue)
                 {
                     long DepartureTime=getDepartureTime(NewValue);
-                    if(DepartureTime!=0) {setText(renderTimeDate(LocalDateTime.ofInstant(Instant.ofEpochMilli(DepartureTime), TimeZone.getDefault().toZoneId()))+" (GMT+7)");}
+                    if(DepartureTime!=0) {setText(renderTimeDate(LocalDateTime.ofInstant(Instant.ofEpochMilli(DepartureTime), ZoneId.of("GMT+7")))+" (GMT+7)");}
                     else {setText("");}
                 }
             }

@@ -19,7 +19,7 @@ import project.app.Utilities.AnimationUtils.ParallelTransitionService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static project.app.Utilities.DatabaseUtils.DatabaseUtils.*;
+import static project.app.Utilities.DatabaseUtils.*;
 import static project.app.Utilities.MapUtils.MapUtils.*;
 import static project.app.Utilities.SizeUtils.UNIT;
 
@@ -70,7 +70,7 @@ public class FlightCodePicker extends ScrollPane
         setVbarPolicy(ScrollBarPolicy.NEVER); setHbarPolicy(ScrollBarPolicy.NEVER);
         setPadding(new Insets(0, 0, 0, 0));
         setLayoutX(0); setLayoutY(40*UNIT);
-        setPrefViewportWidth(120*UNIT); setPrefViewportHeight(200*UNIT);
+        setPrefViewportWidth(140*UNIT); setPrefViewportHeight(200*UNIT);
         prefViewportHeightProperty().bind
         (
             new DoubleBinding()

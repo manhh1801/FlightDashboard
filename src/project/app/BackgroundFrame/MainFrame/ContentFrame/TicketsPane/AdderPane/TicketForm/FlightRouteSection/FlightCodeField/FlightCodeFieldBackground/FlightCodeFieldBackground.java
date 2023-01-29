@@ -34,7 +34,7 @@ public class FlightCodeFieldBackground extends Rectangle
         setFill(DARK_GRAY(1));
         setArcWidth(20*UNIT); setArcHeight(20*UNIT);
         setLayoutX(0); setLayoutY(0);
-        setWidth(120*UNIT); setHeight(40*UNIT);
+        setWidth(140*UNIT); setHeight(40*UNIT);
 
         AnimationThreadPool= Executors.newFixedThreadPool(1);
         setAnimationThreadPool(AnimationThreadPool);

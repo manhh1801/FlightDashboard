@@ -34,7 +34,7 @@ public class FlightItem extends Pane
         Rectangle ItemBackground=new Rectangle();
         ItemBackground.setFill(LIGHT_GRAY(1));
         ItemBackground.setLayoutX(0); ItemBackground.setLayoutY(0);
-        ItemBackground.setWidth(120*UNIT); ItemBackground.setHeight(40*UNIT);
+        ItemBackground.setWidth(140*UNIT); ItemBackground.setHeight(40*UNIT);
         ItemBackground.setOpacity(0);
 
         Text LocationDisplay=new Text(Flight);
@@ -47,7 +47,7 @@ public class FlightItem extends Pane
         EnterService=new FadeTransitionService(Duration.millis(50), ItemBackground, 0, 1);
         ExitService=new FadeTransitionService(Duration.millis(50), ItemBackground, 1, 0);
 
-        setPrefSize(120*UNIT, 40*UNIT);
+        setPrefSize(140*UNIT, 40*UNIT);
         getChildren().addAll(ItemBackground, LocationDisplay);
 
         AnimationThreadPool=Executors.newFixedThreadPool(1);
